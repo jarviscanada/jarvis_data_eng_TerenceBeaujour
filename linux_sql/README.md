@@ -44,8 +44,7 @@ crontab -e
 
 ### Architecture
 
-architecture.png
-
+![Architecture](/assets/architecture.png?raw=true "Architecture")
 ### Scripts
 
 - `psql_docker.sh`: Starts, stops, creates a psql instance.
