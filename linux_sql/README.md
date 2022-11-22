@@ -1,6 +1,6 @@
 # Introduction
 
-A Linux cluster of 10 nodes running on CentOS 7 using google cloud platform with a virtual machine. These server can communicate thanks to their IP addresses.
+A Linux cluster of 10 nodes is running on CentOS 7 using google cloud platform with a virtual machine. These server can communicate thanks to their IP addresses.
 The Jarvis Linux Cluster Administration (LCA) team is managing these servers.
 The goal of this project is to record the hardware information and the usage of the memory and CPU in RDBMS and to allow the team to better plan the resources in the future utilizing the generated and stored data.
 Bash scripts are generated to get the data PostgreSQL is used as a database and Docker is used to run the the database.
@@ -44,7 +44,7 @@ crontab -e
 
 ### Architecture
 
-![Architecture](/assets/architecture.png?raw=true "Architecture")
+![Architecture](/linux_sql/assets/architecture.png?raw=true "Architecture")
 ### Scripts
 
 - `psql_docker.sh`: Starts, stops, creates a psql instance.
