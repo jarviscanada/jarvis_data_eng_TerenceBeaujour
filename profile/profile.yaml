@@ -5,7 +5,7 @@ github_repo_root_url: https://github.com/jarviscanada/jarvis_data_eng_TerenceBea
 
 # Introduce yourself, your academic and professional background.
 # What excites you about the software industry and your passion. At least 80 words
-summary: I graduated from Paris Diderot school with a Bsc in Science of Engineering, and I also have the equivalent of a Master in Data Science and Machine Learning Engineering that I got with Paris Sorbonne University and DataScientest. I started my career as a freelancer in algorithmic trading, and I used the MQL5 language to develop several bot for the MT5 platform. I have also worked on an arbitrage bot for the Binance exchange, using the Python language, with advanced concepts like asynchronous programming and multi threading. I have also worked one year as a software developer at Vezgo, a company specialized in crypto currency and DeFi, where my job was to implement and optimize several connector with NodeJS that connect to exchanges and blockchains in order to retrieve financial data and store them in a MongoDB database. We were using Agile methodology and beyond acquiring more advanced programming skills, I also learned how to manage a project, I improved my communication skills and I learned to work in a team. I am passionate by data science and data engineering and my goal is to join a great team of engineers so I can bring my skills and competences and I can learn as much as I can from them.
+summary: I graduated from Paris Diderot school with a Bsc in Science of Engineering, and I also have the equivalent of a Master in Data Science and Machine Learning Engineering that I got with Paris Sorbonne University and DataScientest. I started my career as a freelancer in algorithmic trading, and I used the MQL5 language to develop several bots for the MT5 platform. I have also worked on an arbitrage bot for the Binance exchange, using the Python language, with advanced concepts like asynchronous programming and multi threading. I have also worked one year as a software developer at Vezgo, a company specialized in crypto currency and DeFi, where my job was to implement and optimize several connector with NodeJS that connect to exchanges and blockchains in order to retrieve financial data and store them in a MongoDB database. We were using Agile methodology and beyond acquiring more advanced programming skills, I also learned how to manage a project, I improved my communication skills and I learned to work in a team. I am passionate by data science and data engineering and my goal is to join a great team of engineers so I can bring my skills and competences and I can learn as much as I can from them.
 
 # Group your skills by level.
 # Your skills can be anything software related (e.g. language, frameworks, methodologies, software, etc.).
@@ -13,18 +13,19 @@ skills:
   # At least 5 skills
   proficient:
     - Python
-    - Linux/Bash
     - Machine Learning
     - Scikit Learn
     - Data analysis
     - Agile/Scrum
     - Git
     - Docker
+    - API
   # At least 5 skills
   competent:
     - NodeJS
     - RDBMS/SQL
     - Java
+    - Deep Learning
     - TensorFlow
     - PyTorch
     - MQL5
@@ -50,9 +51,9 @@ jarvis_projects:
   - name: "Core Java Apps"
     git_url: "/core_java"
     description:
-      - "Twitter App: Curabitur laoreet tristique leo, eget suscipit nisi. Sed in sodales ex. Maecenas vitae tincidunt dui, et eleifend quam."
-      - "JDBC App: Curabitur laoreet tristique leo, eget suscipit nisi. Sed in sodales ex. Maecenas vitae tincidunt dui, et eleifend quam."
-      - "Grep App: Curabitur laoreet tristique leo, eget suscipit nisi. Sed in sodales ex. Maecenas vitae tincidunt dui, et eleifend quam."
+      - "Twitter App: In progress"
+      - "JDBC App: Not started."
+      - "Grep App: Not started."
   - name: "Springboot App"
     git_url: "/springboot"
     description: ""
@@ -115,13 +116,6 @@ education:
 #Optional section
 others:
     #category
-  - title: "Certificates"
-    #list of items
-    bullets:
-      - "Udacity Machine Learning (2019)"
-  - title: "Awards"
-    bullets:
-      - "Winner"
   - title: "Activities/Hobbies"
     bullets:
       - "Trading (manual and algorithmic)"
