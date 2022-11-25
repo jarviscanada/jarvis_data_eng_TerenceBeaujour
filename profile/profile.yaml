@@ -1,0 +1,129 @@
+# Preferred name (Characters only)
+name: "Terence Beaujour"
+# Your GitHub repo root URL
+github_repo_root_url: https://github.com/jarviscanada/jarvis_data_eng_TerenceBeaujour
+
+# Introduce yourself, your academic and professional background.
+# What excites you about the software industry and your passion. At least 80 words
+summary: I graduated from Paris Diderot school with a Bsc in Science of Engineering, and I also have the equivalent of a Master in Data Science and Machine Learning Engineering that I got with Paris Sorbonne University and DataScientest. I started my career as a freelancer in algorithmic trading, and I used the MQL5 language to develop several bot for the MT5 platform. I have also worked on an arbitrage bot for the Binance exchange, using the Python language, with advanced concepts like asynchronous programming and multi threading. I have also worked one year as a software developer at Vezgo, a company specialized in crypto currency and DeFi, where my job was to implement and optimize several connector with NodeJS that connect to exchanges and blockchains in order to retrieve financial data and store them in a MongoDB database. We were using Agile methodology and beyond acquiring more advanced programming skills, I also learned how to manage a project, I improved my communication skills and I learned to work in a team. I am passionate by data science and data engineering and my goal is to join a great team of engineers so I can bring my skills and competences and I can learn as much as I can from them.
+
+# Group your skills by level.
+# Your skills can be anything software related (e.g. language, frameworks, methodologies, software, etc.).
+skills:
+  # At least 5 skills
+  proficient:
+    - Python
+    - Linux/Bash
+    - Machine Learning
+    - Scikit Learn
+    - Data analysis
+    - Agile/Scrum
+    - Git
+    - Docker
+  # At least 5 skills
+  competent:
+    - NodeJS
+    - RDBMS/SQL
+    - Java
+    - TensorFlow
+    - PyTorch
+    - MQL5
+    - Linux/Bash
+    - NoSQL
+  # At least 5 skills
+  familiar:
+    - C++
+    - HTML
+    - CSS
+    - TypeScript
+    - React
+    - Kubernetes
+    - AWS
+
+# List of Jarvis projects
+jarvis_projects:
+  - name: "Cluster Monitor"
+    git_url: "/linux_sql"
+    # The project description allows hiring managers to understand your project and technologies you used(e.g. programming languages, libraries, algorithms, hardware, tools, etc.).
+    # The project description must start with an action verb (https://bit.ly/3guO98u)
+    description: Implemented a software that retrieves and stores hardware information and resources usage for a Linux cluster of 10 nodes running on CentOS 7. Bash scripts were generated to store the data in a PostgreSQL database that was run by a docker container.
+  - name: "Core Java Apps"
+    git_url: "/core_java"
+    description:
+      - "Twitter App: Curabitur laoreet tristique leo, eget suscipit nisi. Sed in sodales ex. Maecenas vitae tincidunt dui, et eleifend quam."
+      - "JDBC App: Curabitur laoreet tristique leo, eget suscipit nisi. Sed in sodales ex. Maecenas vitae tincidunt dui, et eleifend quam."
+      - "Grep App: Curabitur laoreet tristique leo, eget suscipit nisi. Sed in sodales ex. Maecenas vitae tincidunt dui, et eleifend quam."
+  - name: "Springboot App"
+    git_url: "/springboot"
+    description: ""
+  - name: "Python Data Analytics"
+    git_url: "/python_data_analytics"
+    description: ""
+  - name: "Hadoop"
+    git_url: "/hadoop"
+    description: ""
+  - name: "Spark"
+    git_url: "/spark"
+    description: ""
+  - name: "Cloud/DevOps"
+    git_url: "/cloud_devops"
+    description: ""
+
+# List of personal or academic projects
+# Feel free to add more projects
+highlighted_projects:
+    #project name
+  - name: "Machine Learning"
+    #URL is optional
+    git_url: "https://github.com/terencebeauj/mle_project"
+    # The project description must start with an action verb (https://bit.ly/3guO98u)
+    description: Implemented a complete machine/deep learning unit for the Nouméa hospital in New-Caledonia. This tool allows the hospital to answer different problems, Prediction of patient admission (classification), prediction of length of stay in the emergency department (regression) and prediction of patient flow the next day (Recurrent Neural Network).
+  - name: "Algorithmic Trading"
+    git_url:
+    description: Realization of an arbitrage algorithm for crypto currencies. Real time data retrieval with websockets on the Binance exchange, scanning of 1000 different triangles in real time, placing limit orders using multi-threading.
+
+
+#List of professional experience
+#The job description allows hiring managers to understand your job and the technologies you used(e.g. programming languages, libraries, algorithms, hardware, tools, etc.).
+#The description must be more than 25 words. If your experience is not software related, please focus on soft skills and achievements (e.g. team collaboration, problem-solving, improvements, communication).
+professional_experience:
+  #Write your Jarvis role as a professional experience rather than training.
+  - title: "Software Engineer"
+    company: "Jarvis"
+    duration: "2022-present"
+    # The project description must start with an action verb (https://bit.ly/3guO98u)
+    description: "Worked on a complete project using Linux, SQL and docker, to help Jarvis team to monitor their cluster. Used Agile method to collaborate with other team members and to manage the project."
+  - title: "Software Developer"
+    company: "Vezgo"
+    duration: "2021-2022"
+    description: "Optimized and implemented different connectors to connect and retrieve data from different exchanges and blockchain. Used NojeJS to implement the software, connected to MongoDB database to store and manage the data. Used git and github to manage the software and Agile method to manage the project."
+
+#List of edcuation
+education: 
+  - school_name: "Paris-Sorbonne university"
+    duration: "2021"
+    degree: "Equivalent Master in France"
+    department: "Data Sciences"
+    # optional
+    awards_achievements:
+  - school_name: "Paris Diderot school"
+    duration: "2017-2018"
+    degree: "Bsc Sciences of Engineering"
+    department: "Electrical Engineering"
+    awards_achievements: 
+
+#Optional section
+others:
+    #category
+  - title: "Certificates"
+    #list of items
+    bullets:
+      - "Udacity Machine Learning (2019)"
+  - title: "Awards"
+    bullets:
+      - "Winner"
+  - title: "Activities/Hobbies"
+    bullets:
+      - "Trading (manual and algorithmic)"
+      - "Video game player"
+      - "Piano learner"
