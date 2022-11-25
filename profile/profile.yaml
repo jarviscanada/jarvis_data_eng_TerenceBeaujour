@@ -97,7 +97,7 @@ professional_experience:
   - title: "Software Developer"
     company: "Vezgo"
     duration: "2021-2022"
-    description: "Optimized and implemented different connectors to connect and retrieve data from different exchanges and blockchain. Used NojeJS to implement the software, connected to MongoDB database to store and manage the data. Used git and github to manage the software and Agile method to manage the project."
+    description: "Optimized and implemented different connectors to connect and retrieve data from different exchanges and blockchain. Used NodeJS to implement the software, connected to MongoDB database to store and manage the data. Used git and github to manage the software and Agile method to manage the project."
 
 #List of edcuation
 education: 

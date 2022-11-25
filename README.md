@@ -44,7 +44,7 @@ Project source code: [https://github.com/jarviscanada/jarvis_data_eng_TerenceBea
 
 **Software Engineer, Jarvis (2022-present)**: Worked on a complete project using Linux, SQL and docker, to help Jarvis team to monitor their cluster. Used Agile method to collaborate with other team members and to manage the project.
 
-**Software Developer, Vezgo (2021-2022)**: Optimized and implemented different connectors to connect and retrieve data from different exchanges and blockchain. Used NojeJS to implement the software, connected to MongoDB database to store and manage the data. Used git and github to manage the software and Agile method to manage the project.
+**Software Developer, Vezgo (2021-2022)**: Optimized and implemented different connectors to connect and retrieve data from different exchanges and blockchain. Used NodeJS to implement the software, connected to MongoDB database to store and manage the data. Used git and github to manage the software and Agile method to manage the project.
 
 
 ## Education
