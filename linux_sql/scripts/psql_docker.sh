@@ -28,7 +28,7 @@ case $cmd in
   ;;
 
   start|stop)
-  if [ $container_status -eq 0 ]; then
+  if [ $container_status -ne 0 ]; then
     echo "Container has not been created"
     exit 1
   fi
