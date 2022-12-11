@@ -105,6 +105,7 @@ public class JavaGrepImp implements JavaGrep {
             while ((thisLine = bufferedReader.readLine()) != null) {
                 lines.add(thisLine);
             }
+            bufferedReader.close();
             return lines;
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
