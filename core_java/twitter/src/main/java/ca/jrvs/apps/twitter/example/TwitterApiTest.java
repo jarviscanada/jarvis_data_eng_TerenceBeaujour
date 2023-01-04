@@ -36,7 +36,7 @@ public class TwitterApiTest {
 
         System.out.println("Http Request Headers: ");
         Arrays.stream(request.getAllHeaders())
-                        .forEach(System.out::println);
+                .forEach(System.out::println);
 
         // Send the request
         HttpClient httpClient = HttpClientBuilder.create().build();
