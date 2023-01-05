@@ -10,7 +10,7 @@ public class Node {
     }
 
     public int getData() {
-        return data;
+        return this.data;
     }
 
     public void setData(int data) {
@@ -18,7 +18,7 @@ public class Node {
     }
 
     public Node getNextNode() {
-        return nextNode;
+        return this.nextNode;
     }
 
     public void setNextNode(Node nextNode) {

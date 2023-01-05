@@ -12,5 +12,12 @@ public class LinkedListDemo {
         list.insertAtHead(10);
 
         System.out.println(list);
+        System.out.println("Length: " + list.length());
+
+        list.deleteFromHead();
+        System.out.println(list);
+        System.out.println("Length: " + list.length());
+
+        System.out.println("Found: " + list.find(100));
     }
 }
