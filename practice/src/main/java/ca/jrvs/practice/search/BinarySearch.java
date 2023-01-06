@@ -28,7 +28,7 @@ public class BinarySearch {
         int right = arr.length - 1;
 
         while (left <= right) {
-            int mid = (left + right) / 2;
+            int mid = (int) Math.floor((left + right) / 2);
             int comparison = target.compareTo(arr[mid]);
 
             if (comparison == 0) {
