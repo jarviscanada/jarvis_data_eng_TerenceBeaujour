@@ -11,7 +11,7 @@ public class BinarySearchTest {
 
     @Test
     public void binarySearchIteration() {
-        Integer[] array = {1,2,3,4,5,6,7,8,9};
+        Integer[] array = {1,2,3,4,5,6,7,8,9,10};
         Optional<Integer> index;
         BinarySearch bs = new BinarySearch();
 
