@@ -72,3 +72,75 @@ select
   100000, 
   800;
 ````
+
+````sql
+update 
+  cd.facilities 
+set 
+  initialoutlay = 100000 
+where 
+  facid = 1;
+````
+
+````sql
+update 
+  cd.facilities 
+set 
+  membercost = (
+    select 
+      membercost * 1.1 
+    from 
+      cd.facilities 
+    where 
+      facid = 0
+  ), 
+  guestcost = (
+    select 
+      guestcost * 1.1 
+    from 
+      cd.facilities 
+    where 
+      facid = 0
+  ) 
+where 
+  facid = 1;
+````
+
+````sql
+delete from 
+  cd.bookings;
+````
+
+````sql
+delete from 
+  cd.members 
+where 
+  memid = 37;
+````
+
+````sql
+select 
+  distinct surname 
+from 
+  cd.members 
+union 
+select 
+  distinct name 
+from 
+  cd.facilities;
+````
+
+````sql
+select 
+  cd.bookings.starttime 
+from 
+  cd.bookings 
+  inner join cd.members on cd.bookings.memid = cd.members.memid 
+where 
+  cd.members.surname = 'Farrell' 
+  and cd.members.firstname = 'David';
+````
+
+````sql
+
+````
