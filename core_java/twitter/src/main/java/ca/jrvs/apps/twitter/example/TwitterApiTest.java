@@ -27,10 +27,10 @@ public class TwitterApiTest {
         OAuthConsumer consumer = new CommonsHttpOAuthConsumer(CONSUMER_KEY, CONSUMER_SECRET);
         consumer.setTokenWithSecret(ACCESS_TOKEN, TOKEN_SECRET);
 
-        // Create an HTTP GET request
+        // Create an HTTP POST request
         String status = "today is a good day to practice Java";
         PercentEscaper percentEscaper = new PercentEscaper("", false);
-        HttpPost request = new HttpPost("https://api.twitter.com/101/statuses/update.json?status=" + percentEscaper.escape(status));
+        HttpPost request = new HttpPost("https://api.twitter.com/1.1/statuses/update.json?status=" + percentEscaper.escape(status));
 
         // Sign the request (add headers)
         consumer.sign(request);

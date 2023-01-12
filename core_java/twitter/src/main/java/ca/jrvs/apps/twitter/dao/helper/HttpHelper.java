@@ -1,7 +1,10 @@
 package ca.jrvs.apps.twitter.dao.helper;
 
 import java.net.URI;
+
+import oauth.signpost.OAuthConsumer;
 import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
 import org.apache.http.entity.StringEntity;
 
 public interface HttpHelper {
@@ -11,12 +14,12 @@ public interface HttpHelper {
      * @param uri
      * @return
      */
-    HttpResponse httpPost(URI uri);
+    public HttpResponse httpPost(URI uri);
 
     /**
      * Execute a HTTP Get call
      * @param uri
      * @return
      */
-    HttpResponse httpGet(URI uri);
+    public HttpResponse httpGet(URI uri);
 }
