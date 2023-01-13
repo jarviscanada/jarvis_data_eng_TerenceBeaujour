@@ -22,7 +22,7 @@ public class TwitterHttpHelper implements HttpHelper {
 
     public TwitterHttpHelper(String consumerKey, String consumerSecret, String accessToken, String tokenSecret) {
         this.consumer = new CommonsHttpOAuthConsumer(consumerKey, consumerSecret);
-        consumer.setTokenWithSecret(accessToken, tokenSecret);
+        this.consumer.setTokenWithSecret(accessToken, tokenSecret);
         this.httpClient = HttpClientBuilder.create().build();
     }
 
@@ -59,12 +59,12 @@ public class TwitterHttpHelper implements HttpHelper {
     public HttpResponse makeRequest(URI uri, HttpMethod requestType) throws OAuthException, IOException {
         if (requestType == HttpMethod.GET) {
             HttpGet request = new HttpGet(uri);
-            consumer.sign(request);
-            return httpClient.execute(request);
+            this.consumer.sign(request);
+            return this.httpClient.execute(request);
         } else if (requestType == HttpMethod.POST) {
             HttpPost request = new HttpPost(uri);
-            consumer.sign(request);
-            return httpClient.execute(request);
+            this.consumer.sign(request);
+            return this.httpClient.execute(request);
         } else {
             throw new IllegalArgumentException("Wrong HTTP request type: " + requestType);
         }

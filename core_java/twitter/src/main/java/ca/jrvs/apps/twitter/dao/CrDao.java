@@ -7,19 +7,19 @@ public interface CrDao<T, ID> {
      * @param entity entity that to be created
      * @return created entity
      */
-    T create(T entity);
+    public T create(T entity);
 
     /**
-     * Find an entity(Tweet) by its id
+     * Find an entity (Tweet) by its id
      * @param id entity id
      * @return Tweet entity
      */
-    T findById(ID id);
+    public T findById(ID id);
 
     /**
-     * Delete an entity(Tweet) by its ID
+     * Delete an entity (Tweet) by its ID
      * @param id of the entity to be deleted
      * @return deleted entity
      */
-    T deleteById(ID id);
+    public T deleteById(ID id);
 }
