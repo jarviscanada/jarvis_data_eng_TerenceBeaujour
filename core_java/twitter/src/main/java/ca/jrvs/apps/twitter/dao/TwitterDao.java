@@ -3,6 +3,7 @@ package ca.jrvs.apps.twitter.dao;
 import ca.jrvs.apps.twitter.dao.helper.HttpHelper;
 import ca.jrvs.apps.twitter.model.Tweet;
 import ca.jrvs.apps.twitter.utils.JsonUtil;
+import com.google.gdata.util.common.base.PercentEscaper;
 import org.apache.http.HttpResponse;
 import org.apache.http.util.EntityUtils;
 
@@ -16,7 +17,7 @@ public class TwitterDao implements CrDao<Tweet, String>{
     private static final String API_BASE_URI = "https://api.twitter.com";
     private static final String POST_PATH = "/1.1/statuses/update.json";
     private static final String SHOW_PATH = "/1.1/statuses/show.json";
-    private static final String DELETE_PATH = "/1.1/statuses/destroy";
+    private static final String DELETE_PATH = "/1.1/statuses/destroy/";
 
     private static final String QUERY_SYM = "?";
     private static final String AMPERSAND = "&";
@@ -99,7 +100,15 @@ public class TwitterDao implements CrDao<Tweet, String>{
     private URI getPostURI(Tweet tweet) throws URISyntaxException, UnsupportedEncodingException {
         URI uri;
         String text = tweet.getText();
-        String path = API_BASE_URI + POST_PATH + QUERY_SYM + "status" + EQUAL + text;
+        PercentEscaper percentEscaper = new PercentEscaper("", false);
+        String path = API_BASE_URI + POST_PATH + QUERY_SYM + "status" + EQUAL + percentEscaper.escape(text);
+
+        if (tweet.getCoordinates().getCoordinates().length == 2) {
+            float lat = tweet.getCoordinates().getCoordinates()[0];
+            float lon = tweet.getCoordinates().getCoordinates()[1];
+            path += AMPERSAND + "lat" + EQUAL + lat + AMPERSAND + "lon" + EQUAL + lon;
+        }
+
         uri = new URI(path);
         return uri;
     }
@@ -110,7 +119,7 @@ public class TwitterDao implements CrDao<Tweet, String>{
     }
 
     private URI getDeleteURI(String id) throws URISyntaxException {
-        String path = API_BASE_URI + DELETE_PATH + QUERY_SYM + "id" + EQUAL + id;
+        String path = API_BASE_URI + DELETE_PATH + id + ".json";
         return new URI(path);
     }
 

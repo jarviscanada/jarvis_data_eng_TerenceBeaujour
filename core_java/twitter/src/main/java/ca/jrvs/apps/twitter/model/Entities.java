@@ -1,5 +1,7 @@
 package ca.jrvs.apps.twitter.model;
 
+import java.util.Arrays;
+
 public class Entities {
 
     private Hashtag[] hashtags;
@@ -19,5 +21,13 @@ public class Entities {
 
     public void setUserMentions(UserMention[] userMentions) {
         this.userMentions = userMentions;
+    }
+
+    @Override
+    public String toString() {
+        return "Entities{" +
+                "hashtags=" + Arrays.toString(hashtags) +
+                ", userMentions=" + Arrays.toString(userMentions) +
+                '}';
     }
 }

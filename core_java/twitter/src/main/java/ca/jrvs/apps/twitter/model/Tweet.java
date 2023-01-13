@@ -1,7 +1,9 @@
 package ca.jrvs.apps.twitter.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Tweet {
 
     @JsonProperty("created_at")
@@ -22,6 +24,10 @@ public class Tweet {
     private boolean favorited;
     @JsonProperty("retweeted")
     private boolean retweeted;
+
+    public Tweet() {
+
+    }
 
     public Tweet(String text, float lat, float lon) {
         this.text = text;
@@ -99,5 +105,20 @@ public class Tweet {
 
     public void setRetweeted(boolean retweeted) {
         this.retweeted = retweeted;
+    }
+
+    @Override
+    public String toString() {
+        return "Tweet{" +
+                "created_at='" + created_at + '\'' +
+                ", id=" + id +
+                ", id_str='" + id_str + '\'' +
+                ", text='" + text + '\'' +
+                ", entities=" + entities +
+                ", coordinates=" + coordinates +
+                ", retweet_count=" + retweet_count +
+                ", favorited=" + favorited +
+                ", retweeted=" + retweeted +
+                '}';
     }
 }

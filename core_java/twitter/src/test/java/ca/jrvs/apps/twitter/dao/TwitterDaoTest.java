@@ -31,8 +31,7 @@ public class TwitterDaoTest {
 
     @Test
     public void create() throws JsonProcessingException {
-        String hashTage = "#ETH";
-        String text = "Bitcoin";
+        String text = "I love programming";
         float lat = 1f;
         float lon = -1f;
         Tweet postTweet = TweetUtil.buildTweet(text, lat, lon);
@@ -40,14 +39,26 @@ public class TwitterDaoTest {
 
         Tweet tweet = dao.create(postTweet);
 
+        System.out.println(JsonUtil.toJson(tweet, true, false));
+
         assertEquals(text, tweet.getText());
     }
 
     @Test
-    public void findById() {
+    public void findById() throws JsonProcessingException {
+        String id = "1613962713004113923";
+        Tweet tweet = this.dao.findById(id);
+
+        assertNotNull(tweet);
+        System.out.println(JsonUtil.toJson(tweet, true, false));
     }
 
     @Test
-    public void deleteById() {
+    public void deleteById() throws JsonProcessingException{
+        String id = "1613962713004113923";
+        Tweet tweet = this.dao.deleteById(id);
+
+        assertNotNull(tweet);;
+        System.out.println(JsonUtil.toJson(tweet, true, false));
     }
 }

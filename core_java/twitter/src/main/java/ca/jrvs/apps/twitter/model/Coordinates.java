@@ -1,9 +1,15 @@
 package ca.jrvs.apps.twitter.model;
 
+import java.util.Arrays;
+
 public class Coordinates {
 
     private float[] coordinates;
     private String type;
+
+    public Coordinates() {
+
+    }
 
     public Coordinates(float[] coord) {
         this.coordinates = coord;
@@ -24,5 +30,13 @@ public class Coordinates {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    @Override
+    public String toString() {
+        return "Coordinates{" +
+                "coordinates=" + Arrays.toString(coordinates) +
+                ", type='" + type + '\'' +
+                '}';
     }
 }
