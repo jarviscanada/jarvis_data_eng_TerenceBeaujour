@@ -32,12 +32,11 @@ public class TwitterService implements Service {
      * Search a tweet by ID
      *
      * @param id tweet id
-     * @param fields set fields not in the list to null
      * @return Tweet object which is returned by the Twitter API
      * @throws IllegalArgumentException if id or fields param is invalid
      */
     @Override
-    public Tweet showTweet(String id, String[] fields) {
+    public Tweet showTweet(String id) {
         validateId(id);
         return (Tweet) this.dao.findById(id);
     }
@@ -50,16 +49,22 @@ public class TwitterService implements Service {
      * @throws IllegalArgumentException if one of the IDs is invalid.
      */
     @Override
-    public List<Tweet> deleteTweets(String[] ids) {
+    public List<Tweet> deleteTweets(String[] ids) throws InterruptedException, IllegalArgumentException{
         List<Tweet> tweets = new ArrayList<>();
 
         for (String id : ids) {
             validateId(id);
             tweets.add((Tweet) this.dao.deleteById(id));
+            // Precaution against rate limit
+            Thread.sleep(500);
         }
         return tweets;
     }
 
+    /**
+     *
+     * @param tweet will be tested to validate text and coordinates
+     */
     private static void validatePostTweet(Tweet tweet) {
         validateText(tweet);
 
@@ -68,12 +73,22 @@ public class TwitterService implements Service {
         }
     }
 
+    /**
+     *
+     * @param tweet will be tested to validate text
+     * @throws IllegalArgumentException
+     */
     private static void validateText(Tweet tweet) throws IllegalArgumentException {
         if (tweet.getText().length() > 140) {
             throw new IllegalArgumentException("Text to long: " + tweet.getText().length());
         }
     }
 
+    /**
+     *
+     * @param tweet used to validate coordinates
+     * @throws IllegalArgumentException
+     */
     private static void validateCoordinates(Tweet tweet) throws IllegalArgumentException {
         float lat = tweet.getCoordinates().getCoordinates()[0];
         float lon = tweet.getCoordinates().getCoordinates()[1];
@@ -84,6 +99,10 @@ public class TwitterService implements Service {
         }
     }
 
+    /**
+     *
+     * @param id will be checked
+     */
     private static void validateId(String id) {
         try {
             long numId = Long.parseLong(id);

@@ -9,6 +9,11 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.lang.Thread;
+
 import static org.junit.Assert.*;
 
 public class TwitterServiceTest {
@@ -50,10 +55,49 @@ public class TwitterServiceTest {
     }
 
     @Test
-    public void showTweet() {
+    public void showTweet() throws IOException {
+        // Create and post a tweet to test the id
+        Tweet postTweet = TweetUtil.buildTestTweet();
+        System.out.println(JsonUtil.toJson(postTweet, true, false));
+        Tweet tweet = this.dao.create(postTweet);
+        System.out.println(JsonUtil.toJson(tweet, true, false));
+        String id = tweet.getId_str();
+
+        // Actual testing
+        Tweet showTweet = this.service.showTweet(id);
+        System.out.println(JsonUtil.toJson(showTweet, true, false));
+
+        assertEquals(id, showTweet.getId_str());
     }
 
     @Test
-    public void deleteTweets() {
+    public void deleteTweets() throws InterruptedException, IllegalArgumentException{
+
+        List<Tweet> tweetList = new ArrayList<>();
+
+        //  Create an array of size 3 to get the ids.
+        String[] ids = new String[3];
+
+        // Post 3 tweets
+        for (int i = 0; i<3; i++) {
+            Tweet postTweet = TweetUtil.buildTestTweet();
+            Thread.sleep(500);
+            Tweet tweet = this.service.postTweet(postTweet);
+            tweetList.add(tweet);
+            ids[i] = tweet.getId_str();
+        }
+
+        assertNotNull(ids);
+
+        // Actual test
+        List<Tweet> deletedTweets = this.service.deleteTweets(ids);
+
+        assertEquals(tweetList.size(), deletedTweets.size());
+
+        for (int i = 0; i < deletedTweets.size(); i++) {
+            String expected = tweetList.get(i).getId_str();
+            String result = deletedTweets.get(i).getId_str();
+            assertEquals(expected, result);
+        }
     }
 }

@@ -20,12 +20,11 @@ public interface Service {
      * Search a tweet by ID
      *
      * @param id tweet id
-     * @param fields set fields not in the list to null
      * @return Tweet object which is returned by the Twitter API
      *
      * @throws IllegalArgumentException if id or fields param is invalid
      */
-    Tweet showTweet(String id, String[] fields);
+    Tweet showTweet(String id);
 
     /**
      * Delete Tweet(s) by id(s).
@@ -35,6 +34,6 @@ public interface Service {
      *
      * @throws IllegalArgumentException if one of the IDs is invalid.
      */
-    List<Tweet> deleteTweets(String[] ids);
+    List<Tweet> deleteTweets(String[] ids) throws InterruptedException;
 
 }
