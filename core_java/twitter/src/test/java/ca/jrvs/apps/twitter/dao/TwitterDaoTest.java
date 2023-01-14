@@ -42,6 +42,11 @@ public class TwitterDaoTest {
         System.out.println(JsonUtil.toJson(tweet, true, false));
 
         assertEquals(text, tweet.getText());
+
+        assertNotNull(tweet.getCoordinates());
+        assertEquals(lat, tweet.getCoordinates().getCoordinates()[0]);
+        assertEquals(lon, tweet.getCoordinates().getCoordinates()[1]);
+
     }
 
     @Test
