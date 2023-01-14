@@ -11,6 +11,10 @@ public class TwitterService implements Service {
 
     private CrDao dao;
 
+    public TwitterService(CrDao newDao) {
+        this.dao = newDao;
+    }
+
     /**
      * Validate and post a user input Tweet
      *
@@ -34,6 +38,7 @@ public class TwitterService implements Service {
      */
     @Override
     public Tweet showTweet(String id, String[] fields) {
+        validateId(id);
         return (Tweet) this.dao.findById(id);
     }
 
@@ -49,6 +54,7 @@ public class TwitterService implements Service {
         List<Tweet> tweets = new ArrayList<>();
 
         for (String id : ids) {
+            validateId(id);
             tweets.add((Tweet) this.dao.deleteById(id));
         }
         return tweets;
@@ -60,10 +66,6 @@ public class TwitterService implements Service {
         if (tweet.getCoordinates().getCoordinates().length == 2) {
             validateCoordinates(tweet);
         }
-    }
-
-    private static void validateShowTweet(Tweet tweet) {
-
     }
 
     private static void validateText(Tweet tweet) throws IllegalArgumentException {
@@ -78,7 +80,15 @@ public class TwitterService implements Service {
         boolean cond1 = lat < -90 || lat > 90;
         boolean cond2 = lon < -180 || lon > 180;
         if (cond1 || cond2) {
-            throw new IllegalArgumentException("The coordinates are out of range: " + "lat = " + lat + "lon = " + lon);
+            throw new IllegalArgumentException("The coordinates are out of range: " + "lat = " + lat + ", lon = " + lon);
+        }
+    }
+
+    private static void validateId(String id) {
+        try {
+            long numId = Long.parseLong(id);
+        } catch (IllegalArgumentException nfe) {
+            throw new IllegalArgumentException("Your id is incorrect: " + nfe.getMessage());
         }
     }
 }
