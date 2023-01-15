@@ -11,6 +11,7 @@ import ca.jrvs.apps.twitter.utils.TweetUtil;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -81,7 +82,7 @@ public class TwitterControllerTest {
 
     @Test
     public void deleteTweet() throws InterruptedException {
-        // Initialization
+        // Initialization for 1 id
         Tweet generatedTweet = TweetUtil.buildTestTweet();
         Tweet postedTweet = this.service.postTweet(generatedTweet);
 
@@ -96,5 +97,24 @@ public class TwitterControllerTest {
         assertNotNull(tweets);
 
         assertEquals(id, tweets.get(0).getId_str());
+
+        // 2nd initialization for a tests with several ids
+        List<String> generatedIds = new ArrayList<>();
+
+        for (int i = 0; i<3; i++) {
+            Tweet newGeneratedTweet = TweetUtil.buildTestTweet();
+            Tweet newPostedTweet = this.service.postTweet(newGeneratedTweet);
+            generatedIds.add(newPostedTweet.getId_str());
+        }
+
+        String newIds = String.join(",", generatedIds);
+
+        // 2nd test
+        List<Tweet> newTweets = this.controller.deleteTweet(new String[]{method, newIds});
+
+        assertNotNull(newTweets);
+        for (int i = 0; i < newTweets.size(); i++) {
+            assertEquals(generatedIds.get(i), newTweets.get(i).getId_str());
+        }
     }
 }
