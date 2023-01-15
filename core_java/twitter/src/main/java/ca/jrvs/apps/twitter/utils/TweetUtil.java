@@ -22,18 +22,18 @@ public class TweetUtil {
         return tweet;
     }
 
-    private static String getRandomText(boolean expectedToFail) {
+    public static String getRandomText(boolean expectedToFail) {
         if (expectedToFail) return RandomStringUtils.randomAlphabetic(145);
         return RandomStringUtils.randomAlphabetic(40);
     }
 
-    private static float getRandomLat(boolean expectedToFail) {
+    public static float getRandomLat(boolean expectedToFail) {
         Random rand = new Random();
         if (expectedToFail) return 500 * rand.nextFloat();
         return 50 * rand.nextFloat();
     }
 
-    private static float getRandomLon(boolean expectedToFail) {
+    public static float getRandomLon(boolean expectedToFail) {
         Random rand = new Random();
         if (expectedToFail) return 500 * rand.nextFloat();
         return 50 * rand.nextFloat();

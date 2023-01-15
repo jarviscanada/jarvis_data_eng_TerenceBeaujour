@@ -83,7 +83,7 @@ public class TwitterController implements Controller {
             throw new IllegalArgumentException("Usage: TwitterCLIApp delete \"[id1, id2, ...]\"");
         }
 
-        String[] ids = args[2].split(COMMA);
+        String[] ids = args[1].split(COMMA);
 
         if (ids.length < 1) {
             throw new IllegalArgumentException("Ids to delete invalid Usage: TwitterCLIApp delete \"[id1, id2, ...]\"");
