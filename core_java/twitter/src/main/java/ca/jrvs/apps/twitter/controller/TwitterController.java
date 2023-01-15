@@ -3,6 +3,7 @@ package ca.jrvs.apps.twitter.controller;
 import ca.jrvs.apps.twitter.model.Tweet;
 import ca.jrvs.apps.twitter.service.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static ca.jrvs.apps.twitter.utils.TweetUtil.buildTweet;
@@ -64,8 +65,7 @@ public class TwitterController implements Controller {
             throw new IllegalArgumentException("\"Usage: TwitterCLIApp show \"id\"");
         }
 
-        String id = args[1].toString();
-
+        String id = args[1];
         return this.service.showTweet(id);
     }
 
@@ -75,9 +75,20 @@ public class TwitterController implements Controller {
      * @param args
      * @return a list of deleted tweets
      * @throws IllegalArgumentException if args are invalid
+     * @throws InterruptedException If there is an issue with the Thread method
      */
     @Override
-    public List<Tweet> deleteTweet(String[] args) {
-        return null;
+    public List<Tweet> deleteTweet(String[] args) throws InterruptedException {
+        if (args.length != 2) {
+            throw new IllegalArgumentException("Usage: TwitterCLIApp delete \"[id1, id2, ...]\"");
+        }
+
+        String[] ids = args[2].split(COMMA);
+
+        if (ids.length < 1) {
+            throw new IllegalArgumentException("Ids to delete invalid Usage: TwitterCLIApp delete \"[id1, id2, ...]\"");
+        }
+
+        return this.service.deleteTweets(ids);
     }
 }

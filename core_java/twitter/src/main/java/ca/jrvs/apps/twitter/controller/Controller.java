@@ -29,7 +29,8 @@ public interface Controller {
      * @param args
      * @return a list of deleted tweets
      * @throws IllegalArgumentException if args are invalid
+     * @throws InterruptedException If there is an issue with the Thread method
      */
-    List<Tweet> deleteTweet(String[] args);
+    List<Tweet> deleteTweet(String[] args) throws InterruptedException;
 
 }
