@@ -142,5 +142,222 @@ where
 ````
 
 ````sql
+select 
+  mems.firstname as memfname, 
+  mems.surname as memsname, 
+  recs.firstname as recfname, 
+  recs.surname as recsname 
+from 
+  cd.members mems 
+  left outer join cd.members recs on recs.memid = mems.recommendedby 
+order by 
+  memsname, 
+  memfname;
+````
 
+````sql
+select 
+  distinct recs.firstname as firstname, 
+  recs.surname as surname 
+from 
+  cd.members mems 
+  inner join cd.members recs on recs.memid = mems.recommendedby 
+order by 
+  surname, 
+  firstname;
+````
+
+````sql
+select 
+  distinct mems.firstname || ' ' || mems.surname as member, 
+  (
+    select 
+      recs.firstname || ' ' || recs.surname as recommender 
+    from 
+      cd.members recs 
+    where 
+      recs.memid = mems.recommendedby
+  ) 
+from 
+  cd.members mems 
+order by 
+  member;
+````
+
+````sql
+select 
+  recommendedby, 
+  count(*) 
+from 
+  cd.members 
+where 
+  recommendedby is not null 
+group by 
+  recommendedby 
+order by 
+  recommendedby;
+````
+
+````sql
+select 
+  facid, 
+  sum(slots) as "Total Slots" 
+from 
+  cd.bookings 
+group by 
+  facid 
+order by 
+  facid;
+````
+
+````sql
+select 
+  facid, 
+  sum(slots) as "Total Slots" 
+from 
+  cd.bookings 
+where 
+  starttime >= '2012-09-01' 
+  and starttime < '2012-10-01' 
+group by 
+  facid 
+order by 
+  sum(slots);
+
+````
+
+````sql
+select 
+  facid, 
+  extract(
+    month 
+    from 
+      starttime
+  ) as month, 
+  sum(slots) as "Total Slots" 
+from 
+  cd.bookings 
+where 
+  extract(
+    year 
+    from 
+      starttime
+  ) = 2012 
+group by 
+  facid, 
+  month 
+order by 
+  facid, 
+  month;
+````
+
+````sql
+select 
+  count(distinct memid) 
+from 
+  cd.bookings
+````
+
+````sql
+select 
+  mems.surname, 
+  mems.firstname, 
+  mems.memid, 
+  min(bks.starttime) as starttime 
+from 
+  cd.bookings bks 
+  inner join cd.members mems on mems.memid = bks.memid 
+where 
+  starttime >= '2012-09-01' 
+group by 
+  mems.surname, 
+  mems.firstname, 
+  mems.memid 
+order by 
+  mems.memid;
+````
+
+````sql
+select 
+  (
+    select 
+      count(*) 
+    from 
+      cd.members
+  ) as count, 
+  firstname, 
+  surname 
+from 
+  cd.members 
+order by 
+  joindate
+````
+
+````sql
+select 
+  row_number() over(
+    order by 
+      joindate
+  ), 
+  firstname, 
+  surname 
+from 
+  cd.members 
+order by 
+  joindate
+````
+
+````sql
+select 
+  facid, 
+  total 
+from 
+  (
+    select 
+      facid, 
+      sum(slots) total, 
+      rank() over (
+        order by 
+          sum(slots) desc
+      ) rank 
+    from 
+      cd.bookings 
+    group by 
+      facid
+  ) as ranked 
+where 
+  rank = 1
+````
+
+````sql
+select 
+  surname || ', ' || firstname as name 
+from 
+  cd.members
+````
+
+````sql
+select 
+  * 
+from 
+  cd.facilities 
+where 
+  upper(name) like 'TENNIS%';
+````
+
+````sql
+select 
+  memid, 
+  telephone 
+from 
+  cd.members 
+where 
+  telephone ~ '[()]';
+````
+
+````sql
+select substr (mems.surname,1,1) as letter, count(*) as count 
+    from cd.members mems
+    group by letter
+    order by letter
 ````
