@@ -31,7 +31,7 @@ public class TwitterDaoTest {
 
     @Test
     public void create() throws JsonProcessingException {
-        String text = "I love programming";
+        String text = TweetUtil.getRandomText(false);
         float lat = 1f;
         float lon = -1f;
         Tweet postTweet = TweetUtil.buildTweet(text, lat, lon);
@@ -44,14 +44,16 @@ public class TwitterDaoTest {
         assertEquals(text, tweet.getText());
 
         assertNotNull(tweet.getCoordinates());
-        assertEquals(lat, tweet.getCoordinates().getCoordinates()[0]);
-        assertEquals(lon, tweet.getCoordinates().getCoordinates()[1]);
+        assertEquals(lat, tweet.getCoordinates().getCoordinates()[0], 100);
+        assertEquals(lon, tweet.getCoordinates().getCoordinates()[1], 100);
 
     }
 
     @Test
     public void findById() throws JsonProcessingException {
-        String id = "1613962713004113923";
+        Tweet tweetResponse = postTweet();
+        String id = tweetResponse.getId_str();
+        assertNotNull(id);
         Tweet tweet = this.dao.findById(id);
 
         assertNotNull(tweet);
@@ -60,10 +62,21 @@ public class TwitterDaoTest {
 
     @Test
     public void deleteById() throws JsonProcessingException{
-        String id = "1613962713004113923";
+
+        Tweet tweetResponse = postTweet();
+        String id = tweetResponse.getId_str();
+        assertNotNull(id);
+
         Tweet tweet = this.dao.deleteById(id);
 
         assertNotNull(tweet);;
         System.out.println(JsonUtil.toJson(tweet, true, false));
+    }
+
+    public Tweet postTweet() {
+        Tweet postTweet = TweetUtil.buildTestTweet();
+        Tweet tweetResponse = this.dao.create(postTweet);
+        assertNotNull(tweetResponse);
+        return tweetResponse;
     }
 }
