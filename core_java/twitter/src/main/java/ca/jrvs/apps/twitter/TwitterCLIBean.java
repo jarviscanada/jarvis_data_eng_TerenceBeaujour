@@ -13,7 +13,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-@Configuration
+//@Configuration
 public class TwitterCLIBean {
 
     private final String CONSUMER_KEY = System.getenv("CONSUMER_KEY");
