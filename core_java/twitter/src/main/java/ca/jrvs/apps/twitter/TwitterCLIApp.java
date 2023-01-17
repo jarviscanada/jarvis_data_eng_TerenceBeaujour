@@ -23,6 +23,7 @@ public class TwitterCLIApp {
         this.controller = controller;
     }
 
+    // We don't need the main method anymore, we could delete it since we are using @Beans in TwitterCLIBean
     public static void main(String[] args) throws InterruptedException {
         // Get env variables
         String consumerKey = System.getenv("CONSUMER_KEY");

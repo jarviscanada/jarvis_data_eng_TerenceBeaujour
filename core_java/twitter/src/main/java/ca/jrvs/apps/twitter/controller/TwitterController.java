@@ -48,7 +48,7 @@ public class TwitterController implements Controller {
             throw new IllegalArgumentException("Invalid location format\nUsage: TwitterCLIApp post \"tweet_text\" latitude:longitude\"", e);
         }
 
-        Tweet postTweet = buildTweet(tweet_text, lon, lat);
+        Tweet postTweet = buildTweet(tweet_text, lat, lon);
         return service.postTweet(postTweet);
     }
 
