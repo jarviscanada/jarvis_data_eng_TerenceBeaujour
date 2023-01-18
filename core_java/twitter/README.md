@@ -43,7 +43,8 @@ It supports 3 different modes:
 
 # Architecture
 ## UML diagram
-![Architecture](/twitter/assets/architecture.png?raw=true "Architecture")
+
+![Architecture](/assets/architecture.png?raw=true "Architecture")
 ## app/main
 The main app is the starting point of our software, it creates and instantiates all the other layers. 
 ## Controller
