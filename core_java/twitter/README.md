@@ -17,37 +17,28 @@ Make sure that you export those env variables:
 - ACCESS_TOKEN
 - TOKEN_SECRET
 
-Otherwise the command will fail because of the tests.
-(you can also package the app and specify to not run tests).
+Otherwise the command will fail because of the tests (you can also package the app and specify to not run tests).
 
-- The best way to run the app is to use Docker.
-The app supports 3 different modes:
+you can generate these keys if you have a twitter developer account https://developer.twitter.com/en
 
-- 1: You can create a tweet: ``TwitterApp "post" "tweet_text" "latitude:longitude"``.
-e.g.
-``docker run --rm \
-  -e consumerKey=YOUR_VALUE \
-  -e consumerSecret=YOUR_VALUE \
-  -e accessToken=YOUR_VALUE \
-  -e tokenSecret=YOUR_VALUE \
-  jrvs/twitter_app post "test post" "43:79"
-  ``
-- 2: You can retrieve a tweet: ``TwitterApp show tweet_id``.
-- e.g.
-``docker run --rm \
-  -e consumerKey=YOUR_VALUE \
-  -e consumerSecret=YOUR_VALUE \
-  -e accessToken=YOUR_VALUE \
-  -e tokenSecret=YOUR_VALUE \
-  jrvs/twitter_app show 1276568976764686343``
+The best way to run the app is to use Docker.
+It supports 3 different modes:
 
-- 3: You can delete a list of tweets: ``TwitterApp delete [id1,id2,..]``.
-- ``docker run --rm \
-  -e consumerKey=YOUR_VALUE \
-  -e consumerSecret=YOUR_VALUE \
-  -e accessToken=YOUR_VALUE \
-  -e tokenSecret=YOUR_VALUE \
-  jrvs/twitter_app delete 1200145224103841792``
+  - 1: You can create a tweet: ``TwitterApp "post" "tweet_text" "latitude:longitude"``.
+    - e.g.
+
+      ``docker run --rm -e consumerKey=YOUR_VALUE -e consumerSecret=YOUR_VALUE -e accessToken=YOUR_VALUE -e tokenSecret=YOUR_VALUE jrvs/twitter_app post "test post" "43:79"
+      ``
+  - 2: You can retrieve a tweet: ``TwitterApp show tweet_id``.
+    - e.g.
+
+      ``docker run --rm -e consumerKey=YOUR_VALUE -e consumerSecret=YOUR_VALUE -e accessToken=YOUR_VALUE -e tokenSecret=YOUR_VALUE jrvs/twitter_app show 1276568976764686343
+      ``
+
+  - 3: You can delete a list of tweets: ``TwitterApp delete [id1,id2,..]``.
+    - ex 
+
+       ``docker run --rm -e consumerKey=YOUR_VALUE -e consumerSecret=YOUR_VALUE -e accessToken=YOUR_VALUE -e tokenSecret=YOUR_VALUE jrvs/twitter_app delete 1200145224103841792``
 
 # Design
 ## UML diagram
@@ -68,10 +59,16 @@ When we communicate we the REST API, we need to encapsulate our data those objec
 
 # Test
 To implement the integration and unit tests, we have used JUnit4 and Mockito.
-You can run the test using the maven command ``mvn test``.
+You can run the test using the maven command
+``mvn test``.
 
 # Deployment
 To deploy the app, we have used docker containerization to build and push an image to the docker hub. Making it easy to be shareable.
+You can get it using
+
+``
+docker pull terence971/twitter
+``
 
 # Improvements
 - Add more functionalities and make tests for them.
