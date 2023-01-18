@@ -43,13 +43,17 @@ It supports 3 different modes:
 
 # Architecture
 ## UML diagram
-![Architecture](/twitter/assets/architecture.png?raw=true "Architecture")
+![architecture.png](assets%2Farchitecture.png)
+
 ## app/main
-The main app is the starting point of our software, it creates and instantiates all the other layers. 
+The main app is the starting point of our software, it creates and instantiates all the other layers.
+
 ## Controller
 The Controller layer depends on Service, this layer is used to handle input arguments (tweet id, text, etc...).
+
 ## Service
 The Service layer depends on DAO, we perform business logic in this layer, for example, to verify id and coordinates.
+
 ## DAO
 The DAO is the only layer that interacts with the Twitter API to save, show and delete tweets. It handles models implemented with POJOs.
 
