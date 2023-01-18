@@ -6,7 +6,7 @@ The communication with Twitter is assured by a HTTP client that communicates wit
 Maven is used to manage the project and the software has been deployed using Docker technology.
 
 # Quick Start
-- To package the app, use the following maven command:
+To package the app, use the following maven command:
 
 ``mvn clean package``
 
@@ -29,11 +29,14 @@ It supports 3 different modes:
 
       ``docker run --rm -e consumerKey=YOUR_VALUE -e consumerSecret=YOUR_VALUE -e accessToken=YOUR_VALUE -e tokenSecret=YOUR_VALUE jrvs/twitter_app post "test post" "43:79"
       ``
+
+
   - 2: You can retrieve a tweet: ``TwitterApp show tweet_id``.
     - e.g.
 
       ``docker run --rm -e consumerKey=YOUR_VALUE -e consumerSecret=YOUR_VALUE -e accessToken=YOUR_VALUE -e tokenSecret=YOUR_VALUE jrvs/twitter_app show 1276568976764686343
       ``
+
 
   - 3: You can delete a list of tweets: ``TwitterApp delete [id1,id2,..]``.
     - ex 
