@@ -25,21 +25,21 @@ It supports 3 different modes:
   - 1: You can create a tweet: ``TwitterApp "post" "tweet_text" "latitude:longitude"``.
     - e.g.
 
-      ``docker run --rm -e consumerKey=YOUR_VALUE -e consumerSecret=YOUR_VALUE -e accessToken=YOUR_VALUE -e tokenSecret=YOUR_VALUE jrvs/twitter_app post "test post" "43:79"
+      ``docker run --rm -e CONSUMER_KEY=YOUR_VALUE -e CONSUMER_SECRET=YOUR_VALUE -e ACCESS_TOKEN=YOUR_VALUE -e TOKEN_SECRET=YOUR_VALUE jrvs/twitter_app post "test post" "43:79"
       ``
 
 
   - 2: You can retrieve a tweet: ``TwitterApp show tweet_id``.
     - e.g.
 
-      ``docker run --rm -e consumerKey=YOUR_VALUE -e consumerSecret=YOUR_VALUE -e accessToken=YOUR_VALUE -e tokenSecret=YOUR_VALUE jrvs/twitter_app show 1276568976764686343
+      ``docker run --rm -e CONSUMER_KEY=YOUR_VALUE -e CONSUMER_SECRET=YOUR_VALUE -e ACCESS_TOKEN=YOUR_VALUE -e TOKEN_SECRET=YOUR_VALUE jrvs/twitter_app show 1276568976764686343
       ``
 
 
   - 3: You can delete a list of tweets: ``TwitterApp delete [id1,id2,..]``.
     - ex 
 
-       ``docker run --rm -e consumerKey=YOUR_VALUE -e consumerSecret=YOUR_VALUE -e accessToken=YOUR_VALUE -e tokenSecret=YOUR_VALUE jrvs/twitter_app delete 1200145224103841792``
+       ``docker run --rm -e CONSUMER_KEY=YOUR_VALUE -e CONSUMER_SECRET=YOUR_VALUE -e ACCESS_TOKEN=YOUR_VALUE -e TOKEN_SECRET=YOUR_VALUE jrvs/twitter_app delete 1200145224103841792``
 
 # Architecture
 ## UML diagram
@@ -59,7 +59,7 @@ The DAO is the only layer that interacts with the Twitter API to save, show and 
 
 ## Models
 The Models are implemented using POJOs, a class containing private attributes and public getters and setters method.
-When we communicate we the REST API, we need to encapsulate our data those objects are then serialized or deserialized into or from a JSON String.
+When we communicate with the Twitter REST API, we need to encapsulate our data into different object models. Those objects are then serialized or deserialized into or from a JSON String.
 
 ## Spring
 We used the Spring framework to set up and manage dependencies.
