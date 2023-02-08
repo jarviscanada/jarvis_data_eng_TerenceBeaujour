@@ -19,7 +19,7 @@ import java.util.Optional;
  * MarketDataDao is responsible for getting Quotes from IEX
  */
 public class MarketDataDao implements CrudRepository<IexQuote, String> {
-    private static final String IEX_BATCH_PATH = "/stock/market/batch?symbols=%s&types=quote&token";
+    private static final String IEX_BATCH_PATH = "/stock/market/batch?symbols=%s&types=quote&token=";
     private final String IEX_BATCH_URL;
 
     private Logger logger = LoggerFactory.getLogger(MarketDataDao.class);
@@ -27,7 +27,7 @@ public class MarketDataDao implements CrudRepository<IexQuote, String> {
 
     public MarketDataDao(HttpClientConnectionManager httpClientConnectionManager, MarketDataConfig marketDataConfig) {
         this.httpClientConnectionManager = httpClientConnectionManager;
-        IEX_BATCH_URL = IEX_BATCH_PATH;
+        IEX_BATCH_URL = marketDataConfig.getHost() + IEX_BATCH_PATH + marketDataConfig.getToken();
     }
 
     /**
