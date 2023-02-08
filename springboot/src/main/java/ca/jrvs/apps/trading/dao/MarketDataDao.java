@@ -2,6 +2,7 @@ package ca.jrvs.apps.trading.dao;
 
 import ca.jrvs.apps.trading.model.config.MarketDataConfig;
 import ca.jrvs.apps.trading.model.domain.IexQuote;
+import ca.jrvs.apps.trading.utils.JsonUtil;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
@@ -9,6 +10,7 @@ import org.apache.http.conn.HttpClientConnectionManager;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
+import org.apache.http.util.EntityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataRetrievalFailureException;
@@ -35,12 +37,12 @@ public class MarketDataDao implements CrudRepository<IexQuote, String> {
         cm.setMaxTotal(50);
         cm.setDefaultMaxPerRoute(50);;
         MarketDataConfig marketDataConfig = new MarketDataConfig();
-        marketDataConfig.setHost("https://cloud.iexapis.com/v1/");
+        marketDataConfig.setHost("https://cloud.iexapis.com/v1");
         marketDataConfig.setToken(System.getenv("IEX_PUB_TOKEN"));
 
         MarketDataDao dao = new MarketDataDao(cm, marketDataConfig);
-        String url = String.format(dao.IEX_BATCH_URL, "appl");
-        dao.executeHTTPGet(url);
+        String url = String.format(dao.IEX_BATCH_URL, "aapl");
+        System.out.println(dao.executeHTTPGet(url));
     }
 
     public MarketDataDao(HttpClientConnectionManager httpClientConnectionManager, MarketDataConfig marketDataConfig) {
@@ -93,12 +95,15 @@ public class MarketDataDao implements CrudRepository<IexQuote, String> {
         RequestConfig config = this.getHttpconfig();
         httpGet.setConfig(config);
 
+        CloseableHttpResponse response;
+
         try {
-            CloseableHttpResponse response = httpClient.execute(httpGet);
+            response = httpClient.execute(httpGet);
         } catch (IOException e) {
             throw new IOException("Http method failed", e);
         }
-        return null;
+
+        return Optional.ofNullable(parseResponseBody(response, 200));
     }
 
     /**
@@ -122,6 +127,35 @@ public class MarketDataDao implements CrudRepository<IexQuote, String> {
                 .setConnectTimeout(1000)
                 .setSocketTimeout(1000)
                 .build();
+    }
+
+    private String parseResponseBody(CloseableHttpResponse httpResponse, int expectedStatusCode) {
+
+        // Check status code
+        int statusCode = httpResponse.getStatusLine().getStatusCode();
+        if (statusCode != expectedStatusCode) {
+            try {
+                logger.debug(EntityUtils.toString(httpResponse.getEntity()));
+            } catch (IOException e) {
+                logger.debug("Response has no entity");
+            }
+            throw new RuntimeException("Unexpected HTTP status: " + statusCode);
+        }
+
+        if (httpResponse.getEntity() == null) {
+            throw new RuntimeException("Empty response body");
+        }
+
+        logger.debug("Correct status code: " + String.valueOf(statusCode));
+
+        // Convert response entity to string
+        String jsonStr;
+        try {
+            jsonStr = EntityUtils.toString(httpResponse.getEntity());
+        } catch (IOException e) {
+            throw new RuntimeException("Unable to convert Object to JSON str", e);
+        }
+        return jsonStr;
     }
 
     @Override
