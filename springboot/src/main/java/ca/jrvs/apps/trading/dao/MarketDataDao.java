@@ -2,15 +2,20 @@ package ca.jrvs.apps.trading.dao;
 
 import ca.jrvs.apps.trading.model.config.MarketDataConfig;
 import ca.jrvs.apps.trading.model.domain.IexQuote;
+import org.apache.http.client.config.RequestConfig;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
 import org.apache.http.conn.HttpClientConnectionManager;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
+import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataRetrievalFailureException;
 import org.springframework.data.repository.CrudRepository;
 
 import java.io.Closeable;
+import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -25,6 +30,19 @@ public class MarketDataDao implements CrudRepository<IexQuote, String> {
     private Logger logger = LoggerFactory.getLogger(MarketDataDao.class);
     private HttpClientConnectionManager httpClientConnectionManager;
 
+    public static void main(String[] args) throws IOException{
+        PoolingHttpClientConnectionManager cm = new PoolingHttpClientConnectionManager();
+        cm.setMaxTotal(50);
+        cm.setDefaultMaxPerRoute(50);;
+        MarketDataConfig marketDataConfig = new MarketDataConfig();
+        marketDataConfig.setHost("https://cloud.iexapis.com/v1/");
+        marketDataConfig.setToken(System.getenv("IEX_PUB_TOKEN"));
+
+        MarketDataDao dao = new MarketDataDao(cm, marketDataConfig);
+        String url = String.format(dao.IEX_BATCH_URL, "appl");
+        dao.executeHTTPGet(url);
+    }
+
     public MarketDataDao(HttpClientConnectionManager httpClientConnectionManager, MarketDataConfig marketDataConfig) {
         this.httpClientConnectionManager = httpClientConnectionManager;
         IEX_BATCH_URL = marketDataConfig.getHost() + IEX_BATCH_PATH + marketDataConfig.getToken();
@@ -32,8 +50,6 @@ public class MarketDataDao implements CrudRepository<IexQuote, String> {
 
     /**
      * Get an IexQuote (helper method which class finAllById)
-     *
-
      * @param ticker
      * @return
      */
@@ -66,13 +82,22 @@ public class MarketDataDao implements CrudRepository<IexQuote, String> {
 
     /**
      * Execute a get and return http entity/body as a string
-     *
      * Note: Use EntityUtils.toString to process HTTP entity
      * @param url resource URL
      * @return http response body or Optional.empty for 404 response
      * @throws DataRetrievalFailureException if HTTP failed or status code is unexpected
      */
-    private Optional<String> executeHTTPGet(String url) {
+    private Optional<String> executeHTTPGet(String url) throws IOException {
+        CloseableHttpClient httpClient = this.getHttpClient();
+        HttpGet httpGet = new HttpGet(url);
+        RequestConfig config = this.getHttpconfig();
+        httpGet.setConfig(config);
+
+        try {
+            CloseableHttpResponse response = httpClient.execute(httpGet);
+        } catch (IOException e) {
+            throw new IOException("Http method failed", e);
+        }
         return null;
     }
 
@@ -85,6 +110,17 @@ public class MarketDataDao implements CrudRepository<IexQuote, String> {
                 .setConnectionManager(httpClientConnectionManager)
                 // prevent connectionManager shutdown when calling httpClient.close()
                 .setConnectionManagerShared(true)
+                .build();
+    }
+
+    /**
+     * Get a basic configuration for HTTP request
+     * @return The configuration object
+     */
+    private RequestConfig getHttpconfig() {
+        return RequestConfig.custom()
+                .setConnectTimeout(1000)
+                .setSocketTimeout(1000)
                 .build();
     }
 
