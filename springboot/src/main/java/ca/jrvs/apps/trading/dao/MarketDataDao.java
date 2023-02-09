@@ -104,7 +104,8 @@ public class MarketDataDao implements CrudRepository<IexQuote, String> {
                 String asset = assets.next();
                 logger.debug(asset + ": " + jo.get(asset).toString());
                 String quote = jo.get(asset).toString();
-                iexQuotes.add(JsonUtil.toObjectFromJson(quote, IexQuote.class));
+                String extractedString = quote.substring(quote.indexOf("{\"quote\":") + 9, quote.length() - 1);
+                iexQuotes.add(JsonUtil.toObjectFromJson(extractedString, IexQuote.class));
             }
             for (IexQuote quote : iexQuotes) {
                 logger.debug(quote.toString());

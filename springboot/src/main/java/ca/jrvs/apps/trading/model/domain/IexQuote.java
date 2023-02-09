@@ -51,91 +51,91 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 public class IexQuote {
 
     @JsonProperty("avgTotalVolume")
-    private String avgTotalVolume;
+    private long avgTotalVolume;
     @JsonProperty("calculationPrice")
     private String calculationPrice;
     @JsonProperty("change")
-    private Boolean change;
+    private float change;
     @JsonProperty("changePercent")
-    private String changePercent;
+    private float changePercent;
     @JsonProperty("close")
-    private String close;
+    private float close;
     @JsonProperty("closeTime")
-    private String closeTime;
+    private long closeTime;
     @JsonProperty("companyName")
     private String companyName;
     @JsonProperty("delayedPrice")
-    private String delayedPrice;
+    private float delayedPrice;
     @JsonProperty("delayedPriceTime")
-    private String delayedPriceTime;
+    private long delayedPriceTime;
     @JsonProperty("extendedChange")
-    private String extendedChange;
+    private float extendedChange;
     @JsonProperty("extendedChangePercent")
-    private String extendedChangePercent;
+    private float extendedChangePercent;
     @JsonProperty("extendedPrice")
-    private String extendedPrice;
+    private float extendedPrice;
     @JsonProperty("extendedPriceTime")
-    private String extendedPriceTime;
+    private long extendedPriceTime;
     @JsonProperty("high")
-    private String high;
+    private float high;
     @JsonProperty("iexAskPrice")
     private String iexAskPrice;
     @JsonProperty("iexAskSize")
-    private String iexAskSize;
+    private int iexAskSize;
     @JsonProperty("iexBidPrice")
-    private String iexBidPrice;
+    private int iexBidPrice;
     @JsonProperty("iexBidSize")
-    private String iexBidSize;
+    private int iexBidSize;
     @JsonProperty("iexLasUpdated")
-    private String iexLasUpdated;
+    private long iexLasUpdated;
     @JsonProperty("iexMarketPercent")
-    private String iexMarketPercent;
+    private float iexMarketPercent;
     @JsonProperty("iexRealtimePrice")
-    private String iexRealtimePrice;
+    private float iexRealtimePrice;
     @JsonProperty("iexRealtimeSize")
-    private String iexRealtimeSize;
+    private int iexRealtimeSize;
     @JsonProperty("iexVolume")
-    private String iexVolume;
+    private long iexVolume;
     @JsonProperty("latestPrice")
-    private String latestPrice;
+    private float latestPrice;
     @JsonProperty("latestSource")
     private String latestSource;
     @JsonProperty("latestTime")
     private String latestTime;
     @JsonProperty("latestUpdate")
-    private String latestUpdate;
+    private long latestUpdate;
     @JsonProperty("latestVolume")
-    private String latestVolume;
+    private long latestVolume;
     @JsonProperty("low")
-    private String low;
+    private float low;
     @JsonProperty("marketCap")
-    private String marketCap;
+    private long marketCap;
     @JsonProperty("open")
-    private String open;
+    private float open;
     @JsonProperty("openTime")
-    private String openTime;
+    private long openTime;
     @JsonProperty("peRatio")
-    private String peRatio;
+    private float peRatio;
     @JsonProperty("previousClose")
-    private String previousClose;
+    private float previousClose;
     @JsonProperty("primaryExchange")
     private String primaryExchange;
     @JsonProperty("sector")
     private String sector;
     @JsonProperty("week52High")
-    private String week52High;
+    private float week52High;
     @JsonProperty("week52Low")
-    private String week52Low;
+    private float week52Low;
     @JsonProperty("ytdChange")
-    private String ytdChange;
+    private float ytdChange;
 
     @JsonProperty("avgTotalVolume")
-    public String getAvgTotalVolume() {
+    public long getAvgTotalVolume() {
         return avgTotalVolume;
     }
 
     @JsonProperty("avgTotalVolume")
-    public void setAvgTotalVolume(String avgTotalVolume) {
+    public void setAvgTotalVolume(long avgTotalVolume) {
         this.avgTotalVolume = avgTotalVolume;
     }
 
@@ -150,42 +150,42 @@ public class IexQuote {
     }
 
     @JsonProperty("change")
-    public Boolean getChange() {
+    public float getChange() {
         return change;
     }
 
     @JsonProperty("change")
-    public void setChange(Boolean change) {
+    public void setChange(float change) {
         this.change = change;
     }
 
     @JsonProperty("changePercent")
-    public String getChangePercent() {
+    public float getChangePercent() {
         return changePercent;
     }
 
     @JsonProperty("changePercent")
-    public void setChangePercent(String changePercent) {
+    public void setChangePercent(float changePercent) {
         this.changePercent = changePercent;
     }
 
     @JsonProperty("close")
-    public String getClose() {
+    public float getClose() {
         return close;
     }
 
     @JsonProperty("close")
-    public void setClose(String close) {
+    public void setClose(float close) {
         this.close = close;
     }
 
     @JsonProperty("closeTime")
-    public String getCloseTime() {
+    public long getCloseTime() {
         return closeTime;
     }
 
     @JsonProperty("closeTime")
-    public void setCloseTime(String closeTime) {
+    public void setCloseTime(long closeTime) {
         this.closeTime = closeTime;
     }
 
@@ -200,72 +200,72 @@ public class IexQuote {
     }
 
     @JsonProperty("delayedPrice")
-    public String getDelayedPrice() {
+    public float getDelayedPrice() {
         return delayedPrice;
     }
 
     @JsonProperty("delayedPrice")
-    public void setDelayedPrice(String delayedPrice) {
+    public void setDelayedPrice(float delayedPrice) {
         this.delayedPrice = delayedPrice;
     }
 
     @JsonProperty("delayedPriceTime")
-    public String getDelayedPriceTime() {
+    public long getDelayedPriceTime() {
         return delayedPriceTime;
     }
 
     @JsonProperty("delayedPriceTime")
-    public void setDelayedPriceTime(String delayedPriceTime) {
+    public void setDelayedPriceTime(long delayedPriceTime) {
         this.delayedPriceTime = delayedPriceTime;
     }
 
     @JsonProperty("extendedChange")
-    public String getExtendedChange() {
+    public float getExtendedChange() {
         return extendedChange;
     }
 
     @JsonProperty("extendedChange")
-    public void setExtendedChange(String extendedChange) {
+    public void setExtendedChange(float extendedChange) {
         this.extendedChange = extendedChange;
     }
 
     @JsonProperty("extendedChangePercent")
-    public String getExtendedChangePercent() {
+    public float getExtendedChangePercent() {
         return extendedChangePercent;
     }
 
     @JsonProperty("extendedChangePercent")
-    public void setExtendedChangePercent(String extendedChangePercent) {
+    public void setExtendedChangePercent(float extendedChangePercent) {
         this.extendedChangePercent = extendedChangePercent;
     }
 
     @JsonProperty("extendedPrice")
-    public String getExtendedPrice() {
+    public float getExtendedPrice() {
         return extendedPrice;
     }
 
     @JsonProperty("extendedPrice")
-    public void setExtendedPrice(String extendedPrice) {
+    public void setExtendedPrice(float extendedPrice) {
         this.extendedPrice = extendedPrice;
     }
 
     @JsonProperty("extendedPriceTime")
-    public String getExtendedPriceTime() {
+    public long getExtendedPriceTime() {
         return extendedPriceTime;
     }
 
     @JsonProperty("extendedPriceTime")
-    public void setExtendedPriceTime(String extendedPriceTime) {
+    public void setExtendedPriceTime(long extendedPriceTime) {
         this.extendedPriceTime = extendedPriceTime;
     }
 
     @JsonProperty("high")
-    public String getHigh() {
+    public float getHigh() {
         return high;
     }
 
     @JsonProperty("high")
-    public void setHigh(String high) {
+    public void setHigh(float high) {
         this.high = high;
     }
 
@@ -280,92 +280,92 @@ public class IexQuote {
     }
 
     @JsonProperty("iexAskSize")
-    public String getIexAskSize() {
+    public int getIexAskSize() {
         return iexAskSize;
     }
 
     @JsonProperty("iexAskSize")
-    public void setIexAskSize(String iexAskSize) {
+    public void setIexAskSize(int iexAskSize) {
         this.iexAskSize = iexAskSize;
     }
 
     @JsonProperty("iexBidPrice")
-    public String getIexBidPrice() {
+    public int getIexBidPrice() {
         return iexBidPrice;
     }
 
     @JsonProperty("iexBidPrice")
-    public void setIexBidPrice(String iexBidPrice) {
+    public void setIexBidPrice(int iexBidPrice) {
         this.iexBidPrice = iexBidPrice;
     }
 
     @JsonProperty("iexBidSize")
-    public String getIexBidSize() {
+    public int getIexBidSize() {
         return iexBidSize;
     }
 
     @JsonProperty("iexBidSize")
-    public void setIexBidSize(String iexBidSize) {
+    public void setIexBidSize(int iexBidSize) {
         this.iexBidSize = iexBidSize;
     }
 
     @JsonProperty("iexLasUpdated")
-    public String getIexLasUpdated() {
+    public long getIexLasUpdated() {
         return iexLasUpdated;
     }
 
     @JsonProperty("iexLasUpdated")
-    public void setIexLasUpdated(String iexLasUpdated) {
+    public void setIexLasUpdated(long iexLasUpdated) {
         this.iexLasUpdated = iexLasUpdated;
     }
 
     @JsonProperty("iexMarketPercent")
-    public String getIexMarketPercent() {
+    public float getIexMarketPercent() {
         return iexMarketPercent;
     }
 
     @JsonProperty("iexMarketPercent")
-    public void setIexMarketPercent(String iexMarketPercent) {
+    public void setIexMarketPercent(float iexMarketPercent) {
         this.iexMarketPercent = iexMarketPercent;
     }
 
     @JsonProperty("iexRealtimePrice")
-    public String getIexRealtimePrice() {
+    public float getIexRealtimePrice() {
         return iexRealtimePrice;
     }
 
     @JsonProperty("iexRealtimePrice")
-    public void setIexRealtimePrice(String iexRealtimePrice) {
+    public void setIexRealtimePrice(float iexRealtimePrice) {
         this.iexRealtimePrice = iexRealtimePrice;
     }
 
     @JsonProperty("iexRealtimeSize")
-    public String getIexRealtimeSize() {
+    public int getIexRealtimeSize() {
         return iexRealtimeSize;
     }
 
     @JsonProperty("iexRealtimeSize")
-    public void setIexRealtimeSize(String iexRealtimeSize) {
+    public void setIexRealtimeSize(int iexRealtimeSize) {
         this.iexRealtimeSize = iexRealtimeSize;
     }
 
     @JsonProperty("iexVolume")
-    public String getIexVolume() {
+    public long getIexVolume() {
         return iexVolume;
     }
 
     @JsonProperty("iexVolume")
-    public void setIexVolume(String iexVolume) {
+    public void setIexVolume(long iexVolume) {
         this.iexVolume = iexVolume;
     }
 
     @JsonProperty("latestPrice")
-    public String getLatestPrice() {
+    public float getLatestPrice() {
         return latestPrice;
     }
 
     @JsonProperty("latestPrice")
-    public void setLatestPrice(String latestPrice) {
+    public void setLatestPrice(float latestPrice) {
         this.latestPrice = latestPrice;
     }
 
@@ -390,82 +390,82 @@ public class IexQuote {
     }
 
     @JsonProperty("latestUpdate")
-    public String getLatestUpdate() {
+    public long getLatestUpdate() {
         return latestUpdate;
     }
 
     @JsonProperty("latestUpdate")
-    public void setLatestUpdate(String latestUpdate) {
+    public void setLatestUpdate(long latestUpdate) {
         this.latestUpdate = latestUpdate;
     }
 
     @JsonProperty("latestVolume")
-    public String getLatestVolume() {
+    public long getLatestVolume() {
         return latestVolume;
     }
 
     @JsonProperty("latestVolume")
-    public void setLatestVolume(String latestVolume) {
+    public void setLatestVolume(long latestVolume) {
         this.latestVolume = latestVolume;
     }
 
     @JsonProperty("low")
-    public String getLow() {
+    public float getLow() {
         return low;
     }
 
     @JsonProperty("low")
-    public void setLow(String low) {
+    public void setLow(float low) {
         this.low = low;
     }
 
     @JsonProperty("marketCap")
-    public String getMarketCap() {
+    public long getMarketCap() {
         return marketCap;
     }
 
     @JsonProperty("marketCap")
-    public void setMarketCap(String marketCap) {
+    public void setMarketCap(long marketCap) {
         this.marketCap = marketCap;
     }
 
     @JsonProperty("open")
-    public String getOpen() {
+    public float getOpen() {
         return open;
     }
 
     @JsonProperty("open")
-    public void setOpen(String open) {
+    public void setOpen(float open) {
         this.open = open;
     }
 
     @JsonProperty("openTime")
-    public String getOpenTime() {
+    public long getOpenTime() {
         return openTime;
     }
 
     @JsonProperty("openTime")
-    public void setOpenTime(String openTime) {
+    public void setOpenTime(long openTime) {
         this.openTime = openTime;
     }
 
     @JsonProperty("peRatio")
-    public String getPeRatio() {
+    public float getPeRatio() {
         return peRatio;
     }
 
     @JsonProperty("peRatio")
-    public void setPeRatio(String peRatio) {
+    public void setPeRatio(float peRatio) {
         this.peRatio = peRatio;
     }
 
     @JsonProperty("previousClose")
-    public String getPreviousClose() {
+    public float getPreviousClose() {
         return previousClose;
     }
 
     @JsonProperty("previousClose")
-    public void setPreviousClose(String previousClose) {
+    public void setPreviousClose(float previousClose) {
         this.previousClose = previousClose;
     }
 
@@ -490,201 +490,77 @@ public class IexQuote {
     }
 
     @JsonProperty("week52High")
-    public String getWeek52High() {
+    public float getWeek52High() {
         return week52High;
     }
 
     @JsonProperty("week52High")
-    public void setWeek52High(String week52High) {
+    public void setWeek52High(float week52High) {
         this.week52High = week52High;
     }
 
     @JsonProperty("week52Low")
-    public String getWeek52Low() {
+    public float getWeek52Low() {
         return week52Low;
     }
 
     @JsonProperty("week52Low")
-    public void setWeek52Low(String week52Low) {
+    public void setWeek52Low(float week52Low) {
         this.week52Low = week52Low;
     }
 
     @JsonProperty("ytdChange")
-    public String getYtdChange() {
+    public float getYtdChange() {
         return ytdChange;
     }
 
     @JsonProperty("ytdChange")
-    public void setYtdChange(String ytdChange) {
+    public void setYtdChange(float ytdChange) {
         this.ytdChange = ytdChange;
     }
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(IexQuote.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
-        sb.append("avgTotalVolume");
-        sb.append('=');
-        sb.append(((this.avgTotalVolume == null)?"<null>":this.avgTotalVolume));
-        sb.append(',');
-        sb.append("calculationPrice");
-        sb.append('=');
-        sb.append(((this.calculationPrice == null)?"<null>":this.calculationPrice));
-        sb.append(',');
-        sb.append("change");
-        sb.append('=');
-        sb.append(((this.change == null)?"<null>":this.change));
-        sb.append(',');
-        sb.append("changePercent");
-        sb.append('=');
-        sb.append(((this.changePercent == null)?"<null>":this.changePercent));
-        sb.append(',');
-        sb.append("close");
-        sb.append('=');
-        sb.append(((this.close == null)?"<null>":this.close));
-        sb.append(',');
-        sb.append("closeTime");
-        sb.append('=');
-        sb.append(((this.closeTime == null)?"<null>":this.closeTime));
-        sb.append(',');
-        sb.append("companyName");
-        sb.append('=');
-        sb.append(((this.companyName == null)?"<null>":this.companyName));
-        sb.append(',');
-        sb.append("delayedPrice");
-        sb.append('=');
-        sb.append(((this.delayedPrice == null)?"<null>":this.delayedPrice));
-        sb.append(',');
-        sb.append("delayedPriceTime");
-        sb.append('=');
-        sb.append(((this.delayedPriceTime == null)?"<null>":this.delayedPriceTime));
-        sb.append(',');
-        sb.append("extendedChange");
-        sb.append('=');
-        sb.append(((this.extendedChange == null)?"<null>":this.extendedChange));
-        sb.append(',');
-        sb.append("extendedChangePercent");
-        sb.append('=');
-        sb.append(((this.extendedChangePercent == null)?"<null>":this.extendedChangePercent));
-        sb.append(',');
-        sb.append("extendedPrice");
-        sb.append('=');
-        sb.append(((this.extendedPrice == null)?"<null>":this.extendedPrice));
-        sb.append(',');
-        sb.append("extendedPriceTime");
-        sb.append('=');
-        sb.append(((this.extendedPriceTime == null)?"<null>":this.extendedPriceTime));
-        sb.append(',');
-        sb.append("high");
-        sb.append('=');
-        sb.append(((this.high == null)?"<null>":this.high));
-        sb.append(',');
-        sb.append("iexAskPrice");
-        sb.append('=');
-        sb.append(((this.iexAskPrice == null)?"<null>":this.iexAskPrice));
-        sb.append(',');
-        sb.append("iexAskSize");
-        sb.append('=');
-        sb.append(((this.iexAskSize == null)?"<null>":this.iexAskSize));
-        sb.append(',');
-        sb.append("iexBidPrice");
-        sb.append('=');
-        sb.append(((this.iexBidPrice == null)?"<null>":this.iexBidPrice));
-        sb.append(',');
-        sb.append("iexBidSize");
-        sb.append('=');
-        sb.append(((this.iexBidSize == null)?"<null>":this.iexBidSize));
-        sb.append(',');
-        sb.append("iexLasUpdated");
-        sb.append('=');
-        sb.append(((this.iexLasUpdated == null)?"<null>":this.iexLasUpdated));
-        sb.append(',');
-        sb.append("iexMarketPercent");
-        sb.append('=');
-        sb.append(((this.iexMarketPercent == null)?"<null>":this.iexMarketPercent));
-        sb.append(',');
-        sb.append("iexRealtimePrice");
-        sb.append('=');
-        sb.append(((this.iexRealtimePrice == null)?"<null>":this.iexRealtimePrice));
-        sb.append(',');
-        sb.append("iexRealtimeSize");
-        sb.append('=');
-        sb.append(((this.iexRealtimeSize == null)?"<null>":this.iexRealtimeSize));
-        sb.append(',');
-        sb.append("iexVolume");
-        sb.append('=');
-        sb.append(((this.iexVolume == null)?"<null>":this.iexVolume));
-        sb.append(',');
-        sb.append("latestPrice");
-        sb.append('=');
-        sb.append(((this.latestPrice == null)?"<null>":this.latestPrice));
-        sb.append(',');
-        sb.append("latestSource");
-        sb.append('=');
-        sb.append(((this.latestSource == null)?"<null>":this.latestSource));
-        sb.append(',');
-        sb.append("latestTime");
-        sb.append('=');
-        sb.append(((this.latestTime == null)?"<null>":this.latestTime));
-        sb.append(',');
-        sb.append("latestUpdate");
-        sb.append('=');
-        sb.append(((this.latestUpdate == null)?"<null>":this.latestUpdate));
-        sb.append(',');
-        sb.append("latestVolume");
-        sb.append('=');
-        sb.append(((this.latestVolume == null)?"<null>":this.latestVolume));
-        sb.append(',');
-        sb.append("low");
-        sb.append('=');
-        sb.append(((this.low == null)?"<null>":this.low));
-        sb.append(',');
-        sb.append("marketCap");
-        sb.append('=');
-        sb.append(((this.marketCap == null)?"<null>":this.marketCap));
-        sb.append(',');
-        sb.append("open");
-        sb.append('=');
-        sb.append(((this.open == null)?"<null>":this.open));
-        sb.append(',');
-        sb.append("openTime");
-        sb.append('=');
-        sb.append(((this.openTime == null)?"<null>":this.openTime));
-        sb.append(',');
-        sb.append("peRatio");
-        sb.append('=');
-        sb.append(((this.peRatio == null)?"<null>":this.peRatio));
-        sb.append(',');
-        sb.append("previousClose");
-        sb.append('=');
-        sb.append(((this.previousClose == null)?"<null>":this.previousClose));
-        sb.append(',');
-        sb.append("primaryExchange");
-        sb.append('=');
-        sb.append(((this.primaryExchange == null)?"<null>":this.primaryExchange));
-        sb.append(',');
-        sb.append("sector");
-        sb.append('=');
-        sb.append(((this.sector == null)?"<null>":this.sector));
-        sb.append(',');
-        sb.append("week52High");
-        sb.append('=');
-        sb.append(((this.week52High == null)?"<null>":this.week52High));
-        sb.append(',');
-        sb.append("week52Low");
-        sb.append('=');
-        sb.append(((this.week52Low == null)?"<null>":this.week52Low));
-        sb.append(',');
-        sb.append("ytdChange");
-        sb.append('=');
-        sb.append(((this.ytdChange == null)?"<null>":this.ytdChange));
-        sb.append(',');
-        if (sb.charAt((sb.length()- 1)) == ',') {
-            sb.setCharAt((sb.length()- 1), ']');
-        } else {
-            sb.append(']');
-        }
-        return sb.toString();
+        return "IexQuote{" +
+                "avgTotalVolume=" + avgTotalVolume +
+                ", calculationPrice='" + calculationPrice + '\'' +
+                ", change=" + change +
+                ", changePercent=" + changePercent +
+                ", close=" + close +
+                ", closeTime=" + closeTime +
+                ", companyName='" + companyName + '\'' +
+                ", delayedPrice=" + delayedPrice +
+                ", delayedPriceTime=" + delayedPriceTime +
+                ", extendedChange=" + extendedChange +
+                ", extendedChangePercent=" + extendedChangePercent +
+                ", extendedPrice=" + extendedPrice +
+                ", extendedPriceTime=" + extendedPriceTime +
+                ", high=" + high +
+                ", iexAskPrice='" + iexAskPrice + '\'' +
+                ", iexAskSize=" + iexAskSize +
+                ", iexBidPrice=" + iexBidPrice +
+                ", iexBidSize=" + iexBidSize +
+                ", iexLasUpdated=" + iexLasUpdated +
+                ", iexMarketPercent=" + iexMarketPercent +
+                ", iexRealtimePrice=" + iexRealtimePrice +
+                ", iexRealtimeSize=" + iexRealtimeSize +
+                ", iexVolume=" + iexVolume +
+                ", latestPrice=" + latestPrice +
+                ", latestSource='" + latestSource + '\'' +
+                ", latestTime='" + latestTime + '\'' +
+                ", latestUpdate=" + latestUpdate +
+                ", latestVolume=" + latestVolume +
+                ", low=" + low +
+                ", marketCap=" + marketCap +
+                ", open=" + open +
+                ", openTime=" + openTime +
+                ", peRatio=" + peRatio +
+                ", previousClose=" + previousClose +
+                ", primaryExchange='" + primaryExchange + '\'' +
+                ", sector='" + sector + '\'' +
+                ", week52High=" + week52High +
+                ", week52Low=" + week52Low +
+                ", ytdChange=" + ytdChange +
+                '}';
     }
-
 }
