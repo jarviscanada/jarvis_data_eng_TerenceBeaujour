@@ -44,6 +44,8 @@ public class MarketDataDao implements CrudRepository<IexQuote, String> {
 
         MarketDataDao dao = new MarketDataDao(cm, marketDataConfig);
 
+        List<IexQuote> quoteList = dao.findAllById(Arrays.asList("fb", "aapl"));
+
         IexQuote quote = dao.findById("fb").get();
         logger.debug(quote.getCompanyName());
     }
@@ -106,11 +108,8 @@ public class MarketDataDao implements CrudRepository<IexQuote, String> {
                 String quote = jo.get(asset).toString();
                 Quote quoteModel = JsonUtil.toObjectFromJson(quote, Quote.class);
                 iexQuotes.add(quoteModel.getQuote());
-                return iexQuotes;
             }
-            for (IexQuote quote : iexQuotes) {
-                logger.debug(quote.toString());
-            }
+            return iexQuotes;
         } catch (IOException e) {
             logger.error("Error in the findAllById method", e);
         }

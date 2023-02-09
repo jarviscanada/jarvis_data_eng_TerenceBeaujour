@@ -43,6 +43,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
         "previousClose",
         "primaryExchange",
         "sector",
+        "symbol",
         "week52High",
         "week52Low",
         "ytdChange"
@@ -122,6 +123,8 @@ public class IexQuote {
     private String primaryExchange;
     @JsonProperty("sector")
     private String sector;
+    @JsonProperty("symbol")
+    private String symbol;
     @JsonProperty("week52High")
     private float week52High;
     @JsonProperty("week52Low")
@@ -489,6 +492,12 @@ public class IexQuote {
         this.sector = sector;
     }
 
+    @JsonProperty("symbol")
+    public String getSymbol() { return symbol; }
+
+    @JsonProperty("symbol")
+    public void setSymbol(String symbol) { this.symbol = symbol; }
+
     @JsonProperty("week52High")
     public float getWeek52High() {
         return week52High;
@@ -558,6 +567,7 @@ public class IexQuote {
                 ", previousClose=" + previousClose +
                 ", primaryExchange='" + primaryExchange + '\'' +
                 ", sector='" + sector + '\'' +
+                ", symbol='" + symbol + '\'' +
                 ", week52High=" + week52High +
                 ", week52Low=" + week52Low +
                 ", ytdChange=" + ytdChange +
