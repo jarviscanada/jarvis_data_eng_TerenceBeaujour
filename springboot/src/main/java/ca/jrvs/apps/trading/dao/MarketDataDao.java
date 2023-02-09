@@ -11,16 +11,17 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 import org.apache.http.util.EntityUtils;
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataRetrievalFailureException;
 import org.springframework.data.repository.CrudRepository;
 
-import java.io.Closeable;
+import javax.swing.text.html.Option;
 import java.io.IOException;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 /**
  * MarketDataDao is responsible for getting Quotes from IEX
@@ -41,8 +42,10 @@ public class MarketDataDao implements CrudRepository<IexQuote, String> {
         marketDataConfig.setToken(System.getenv("IEX_PUB_TOKEN"));
 
         MarketDataDao dao = new MarketDataDao(cm, marketDataConfig);
-        String url = String.format(dao.IEX_BATCH_URL, "aapl");
-        System.out.println(dao.executeHTTPGet(url));
+//        String url = String.format(dao.IEX_BATCH_URL, "aapl");
+//        System.out.println(dao.executeHTTPGet(url));
+
+        dao.findAllById(Arrays.asList("fb", "aapl"));
     }
 
     public MarketDataDao(HttpClientConnectionManager httpClientConnectionManager, MarketDataConfig marketDataConfig) {
@@ -79,6 +82,37 @@ public class MarketDataDao implements CrudRepository<IexQuote, String> {
      */
     @Override
     public List<IexQuote> findAllById(Iterable<String> ticker) {
+        List<IexQuote> iexQuotes = new ArrayList<>();
+
+        // Convert the Iterable to a comma separated string
+        String tickers = StreamSupport
+                .stream(ticker.spliterator(), false)
+                .collect(Collectors.joining(","));
+
+        String url = String.format(IEX_BATCH_URL, tickers);
+        Optional<String> jsonResponse;
+        String stringResponse;
+        try {
+            jsonResponse = this.executeHTTPGet(url);
+
+            // Get rid of the Optional, to just have the string ({"AAPL":{"quote"..}})
+            stringResponse = jsonResponse.orElse("");
+
+            JSONObject jo = new JSONObject(stringResponse);
+            Iterator<String> assets = jo.keys();
+            while (assets.hasNext()) {
+                String asset = assets.next();
+                logger.debug(asset + ": " + jo.get(asset).toString());
+                String quote = jo.get(asset).toString();
+                iexQuotes.add(JsonUtil.toObjectFromJson(quote, IexQuote.class));
+            }
+            for (IexQuote quote : iexQuotes) {
+                logger.debug(quote.toString());
+            }
+        } catch (IOException e) {
+            logger.error("Error with this method", e);
+        }
+
         return null;
     }
 
@@ -90,20 +124,24 @@ public class MarketDataDao implements CrudRepository<IexQuote, String> {
      * @throws DataRetrievalFailureException if HTTP failed or status code is unexpected
      */
     private Optional<String> executeHTTPGet(String url) throws IOException {
+        Optional<String> finalResponse;
         CloseableHttpClient httpClient = this.getHttpClient();
         HttpGet httpGet = new HttpGet(url);
         RequestConfig config = this.getHttpconfig();
         httpGet.setConfig(config);
 
         CloseableHttpResponse response;
-
         try {
             response = httpClient.execute(httpGet);
         } catch (IOException e) {
             throw new IOException("Http method failed", e);
         }
 
-        return Optional.ofNullable(parseResponseBody(response, 200));
+        String jsonString  = parseResponseBody(response, 200);
+        if (jsonString.isEmpty()) return Optional.empty();
+
+        finalResponse = Optional.of(jsonString);
+        return finalResponse;
     }
 
     /**
@@ -156,6 +194,10 @@ public class MarketDataDao implements CrudRepository<IexQuote, String> {
             throw new RuntimeException("Unable to convert Object to JSON str", e);
         }
         return jsonStr;
+    }
+
+    public IexQuote DeserializeString(String s) throws IOException{
+        return JsonUtil.toObjectFromJson(s, IexQuote.class);
     }
 
     @Override
