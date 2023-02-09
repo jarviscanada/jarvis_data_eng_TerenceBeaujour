@@ -2,6 +2,7 @@ package ca.jrvs.apps.trading.dao;
 
 import ca.jrvs.apps.trading.model.config.MarketDataConfig;
 import ca.jrvs.apps.trading.model.domain.IexQuote;
+import ca.jrvs.apps.trading.model.domain.Quote;
 import ca.jrvs.apps.trading.utils.JsonUtil;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.CloseableHttpResponse;
@@ -30,7 +31,7 @@ public class MarketDataDao implements CrudRepository<IexQuote, String> {
     private static final String IEX_BATCH_PATH = "/stock/market/batch?symbols=%s&types=quote&token=";
     private final String IEX_BATCH_URL;
 
-    private Logger logger = LoggerFactory.getLogger(MarketDataDao.class);
+    private static Logger logger = LoggerFactory.getLogger(MarketDataDao.class);
     private HttpClientConnectionManager httpClientConnectionManager;
 
     public static void main(String[] args) throws IOException{
@@ -42,10 +43,9 @@ public class MarketDataDao implements CrudRepository<IexQuote, String> {
         marketDataConfig.setToken(System.getenv("IEX_PUB_TOKEN"));
 
         MarketDataDao dao = new MarketDataDao(cm, marketDataConfig);
-//        String url = String.format(dao.IEX_BATCH_URL, "aapl");
-//        System.out.println(dao.executeHTTPGet(url));
 
-        dao.findAllById(Arrays.asList("fb", "aapl"));
+        IexQuote quote = dao.findById("fb").get();
+        logger.debug(quote.getCompanyName());
     }
 
     public MarketDataDao(HttpClientConnectionManager httpClientConnectionManager, MarketDataConfig marketDataConfig) {
@@ -104,14 +104,15 @@ public class MarketDataDao implements CrudRepository<IexQuote, String> {
                 String asset = assets.next();
                 logger.debug(asset + ": " + jo.get(asset).toString());
                 String quote = jo.get(asset).toString();
-                String extractedString = quote.substring(quote.indexOf("{\"quote\":") + 9, quote.length() - 1);
-                iexQuotes.add(JsonUtil.toObjectFromJson(extractedString, IexQuote.class));
+                Quote quoteModel = JsonUtil.toObjectFromJson(quote, Quote.class);
+                iexQuotes.add(quoteModel.getQuote());
+                return iexQuotes;
             }
             for (IexQuote quote : iexQuotes) {
                 logger.debug(quote.toString());
             }
         } catch (IOException e) {
-            logger.error("Error with this method", e);
+            logger.error("Error in the findAllById method", e);
         }
 
         return null;
