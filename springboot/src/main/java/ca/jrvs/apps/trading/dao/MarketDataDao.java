@@ -10,15 +10,15 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.conn.HttpClientConnectionManager;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
-import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataRetrievalFailureException;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
-import javax.swing.text.html.Option;
 import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -27,6 +27,7 @@ import java.util.stream.StreamSupport;
 /**
  * MarketDataDao is responsible for getting Quotes from IEX
  */
+@Repository
 public class MarketDataDao implements CrudRepository<IexQuote, String> {
     private static final String IEX_BATCH_PATH = "/stock/market/batch?symbols=%s&types=quote&token=";
     private final String IEX_BATCH_URL;
@@ -34,22 +35,7 @@ public class MarketDataDao implements CrudRepository<IexQuote, String> {
     private static Logger logger = LoggerFactory.getLogger(MarketDataDao.class);
     private HttpClientConnectionManager httpClientConnectionManager;
 
-    public static void main(String[] args) throws IOException{
-        PoolingHttpClientConnectionManager cm = new PoolingHttpClientConnectionManager();
-        cm.setMaxTotal(50);
-        cm.setDefaultMaxPerRoute(50);;
-        MarketDataConfig marketDataConfig = new MarketDataConfig();
-        marketDataConfig.setHost("https://cloud.iexapis.com/v1");
-        marketDataConfig.setToken(System.getenv("IEX_PUB_TOKEN"));
-
-        MarketDataDao dao = new MarketDataDao(cm, marketDataConfig);
-
-        List<IexQuote> quoteList = dao.findAllById(Arrays.asList("fb", "aapl"));
-
-        IexQuote quote = dao.findById("fb").get();
-        logger.debug(quote.getCompanyName());
-    }
-
+    @Autowired
     public MarketDataDao(HttpClientConnectionManager httpClientConnectionManager, MarketDataConfig marketDataConfig) {
         this.httpClientConnectionManager = httpClientConnectionManager;
         IEX_BATCH_URL = marketDataConfig.getHost() + IEX_BATCH_PATH + marketDataConfig.getToken();

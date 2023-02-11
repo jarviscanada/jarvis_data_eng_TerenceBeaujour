@@ -5,13 +5,20 @@ import ca.jrvs.apps.trading.model.domain.IexQuote;
 import ca.jrvs.apps.trading.model.domain.Quote;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
+
+@Transactional
+@Service
 public class QuoteService {
     private static final Logger logger = LoggerFactory.getLogger(Quote.class);
 
 //    private QuoteDao quoteDao;
     private MarketDataDao marketDataDao;
 
+    @Autowired
     public QuoteService(MarketDataDao marketDataDao) {
 //        this.quoteDao = quoteDao;
         this.marketDataDao = marketDataDao;
