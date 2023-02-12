@@ -8,7 +8,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @JsonPropertyOrder({
         "quote"
 })
-public class Quote {
+public class QuoteWrapper {
     @JsonProperty("quote")
     private IexQuote quote;
 

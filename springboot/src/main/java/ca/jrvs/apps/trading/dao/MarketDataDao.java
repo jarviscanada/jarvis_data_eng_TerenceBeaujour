@@ -2,7 +2,7 @@ package ca.jrvs.apps.trading.dao;
 
 import ca.jrvs.apps.trading.model.config.MarketDataConfig;
 import ca.jrvs.apps.trading.model.domain.IexQuote;
-import ca.jrvs.apps.trading.model.domain.Quote;
+import ca.jrvs.apps.trading.model.domain.QuoteWrapper;
 import ca.jrvs.apps.trading.utils.JsonUtil;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.CloseableHttpResponse;
@@ -92,7 +92,7 @@ public class MarketDataDao implements CrudRepository<IexQuote, String> {
                 String asset = assets.next();
                 logger.debug(asset + ": " + jo.get(asset).toString());
                 String quote = jo.get(asset).toString();
-                Quote quoteModel = JsonUtil.toObjectFromJson(quote, Quote.class);
+                QuoteWrapper quoteModel = JsonUtil.toObjectFromJson(quote, QuoteWrapper.class);
                 iexQuotes.add(quoteModel.getQuote());
             }
             return iexQuotes;
